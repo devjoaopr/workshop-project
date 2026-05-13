@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: finance
+
+  datasource:
+    url: jdbc:postgresql://localhost:5435/financedb
+    username: joao
+    password: joaodev
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
