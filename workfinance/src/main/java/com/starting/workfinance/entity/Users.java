@@ -4,32 +4,30 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-public class Finance {
+@Table(name = "users")
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", nullable = false)
     private UUID id;
 
-    @Column(nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String description;
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @Column(nullable = false)
-    private String value;
+    @Column(name = "password", nullable = false, length = 18)
+    private String password;
 
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
-    @PrePersist
-    public void prePersist() {
-        createdAt = Instant.now();
-    }
 }
+

@@ -6,6 +6,8 @@
         http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <include file="db/changelog/migrations/001-create-finance-and-user-table.xml"/>
-    <include file="db/changelog/migrations/002-renaming-table-users.xml"/>
+    <changeSet id="002-renaming-table-users" author="devjoaopr">
+        <renameTable oldTableName="user" newTableName="users"/>
+    </changeSet>
+
 </databaseChangeLog>
