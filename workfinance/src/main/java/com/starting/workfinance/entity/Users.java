@@ -1,4 +1,5 @@
 package com.starting.workfinance.entity;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,5 +30,7 @@ public class Users {
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
 
+    @Column(name = "salary", nullable = false)
+    private String salary;
 }
 
