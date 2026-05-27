@@ -29,8 +29,8 @@ public class Users {
 
     @Column(name = "created_at", nullable = false)
     private Instant createdAt;
-
-    @Column(name = "salary", nullable = false)
-    private String salary;
+//
+//    @Column(name = "salary", nullable = true)
+//    private String salary;
 }
 

@@ -29,17 +29,6 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    @RequestMapping("/add_salary")
-    public UserResponse create(
-            @RequestBody CreateUserRequest createUserRequest
-    ) {
-        try {
-            return userService.createUser(createUserRequest);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @GetMapping("/get")
     public List<Users> get() {

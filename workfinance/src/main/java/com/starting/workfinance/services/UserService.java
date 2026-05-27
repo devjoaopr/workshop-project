@@ -38,9 +38,6 @@ public class UserService {
         );
     }
 
-    public addSalary(){
-
-    }
 
     public List<Users> get() {
         return (List<Users>) userRepository.findAll();
