@@ -1,5 +1,7 @@
 package com.starting.workfinance.controller;
 
+import com.starting.workfinance.dto.AddSalaryRequest;
+import com.starting.workfinance.dto.AddSalaryResponse;
 import com.starting.workfinance.dto.CreateUserRequest;
 import com.starting.workfinance.dto.UserResponse;
 import com.starting.workfinance.entity.Users;
@@ -31,11 +33,11 @@ public class UserController {
 
     @PostMapping
     @RequestMapping("/add_salary")
-    public UserResponse create(
-            @RequestBody CreateUserRequest createUserRequest
+    public AddSalaryResponse create(
+            @RequestBody AddSalaryRequest addSalaryRequest
     ) {
         try {
-            return userService.createUser(createUserRequest);
+            return userService.addSalary(addSalaryRequest);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

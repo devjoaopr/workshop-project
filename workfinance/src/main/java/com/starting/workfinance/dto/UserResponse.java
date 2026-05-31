@@ -12,5 +12,4 @@ public class UserResponse {
     private String password;
     private String email;
     private String name;
-
 }
