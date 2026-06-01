@@ -1,14 +1,14 @@
 package com.starting.workfinance.services;
 
+import com.starting.workfinance.dto.AddSalaryRequest;
+import com.starting.workfinance.dto.AddSalaryResponse;
 import com.starting.workfinance.dto.CreateUserRequest;
 import com.starting.workfinance.dto.UserResponse;
-import com.starting.workfinance.entity.Finance;
 import com.starting.workfinance.entity.Users;
 import com.starting.workfinance.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -38,9 +38,16 @@ public class UserService {
         );
     }
 
-    public addSalary(){
-
+    public AddSalaryResponse addSalary(AddSalaryRequest addSalaryRequest) {
+        Users user = new Users();
+        user.setSalary(addSalaryRequest.getSalary());
+        Users saved = userRepository.save(user);
+        return new AddSalaryResponse(
+                saved.getSalary()
+        );
     }
+
+    ;
 
     public List<Users> get() {
         return (List<Users>) userRepository.findAll();
