@@ -1,5 +1,5 @@
-package com.starting.workfinance.services;
-
-public class AuthServiceImpl {
-
-}
+//package com.starting.workfinance.services;
+//
+//public class AuthServiceImpl {
+//
+//}
