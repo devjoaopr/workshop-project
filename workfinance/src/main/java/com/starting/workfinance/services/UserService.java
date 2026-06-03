@@ -20,18 +20,16 @@ public class UserService {
     }
 
     public UserResponse createUser(CreateUserRequest createUserRequest) throws Exception {
-        if (userRepository.existsByEmail(createUserRequest.getEmail())) {
+        if (userRepository.existsByEmail((createUserRequest.getEmail()))) {
             throw new Exception("This user already Exists !!");
         }
         Users user = new Users();
         user.setEmail(createUserRequest.getEmail());
         user.setPassword(createUserRequest.getPassword());
         user.setName(createUserRequest.getName());
-        user.setCreatedAt(Instant.now());
         Users saved = userRepository.save(user);
 
         return new UserResponse(
-                saved.getCreatedAt(),
                 saved.getEmail(),
                 saved.getPassword(),
                 saved.getName()
