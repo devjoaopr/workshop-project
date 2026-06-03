@@ -8,8 +8,6 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 public class UserResponse {
-    private Instant created_at;
-    private String password;
     private String email;
     private String name;
 }

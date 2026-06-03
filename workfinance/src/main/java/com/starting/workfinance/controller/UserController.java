@@ -1,7 +1,5 @@
 package com.starting.workfinance.controller;
 
-import com.starting.workfinance.dto.AddSalaryRequest;
-import com.starting.workfinance.dto.AddSalaryResponse;
 import com.starting.workfinance.dto.CreateUserRequest;
 import com.starting.workfinance.dto.UserResponse;
 import com.starting.workfinance.entity.Users;
@@ -31,17 +29,6 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    @RequestMapping("/add_salary")
-    public AddSalaryResponse create(
-            @RequestBody AddSalaryRequest addSalaryRequest
-    ) {
-        try {
-            return userService.addSalary(addSalaryRequest);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @GetMapping("/get")
     public List<Users> get() {
