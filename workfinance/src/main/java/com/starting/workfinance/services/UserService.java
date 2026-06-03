@@ -8,7 +8,6 @@ import com.starting.workfinance.entity.Users;
 import com.starting.workfinance.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -26,26 +25,14 @@ public class UserService {
         Users user = new Users();
         user.setEmail(createUserRequest.getEmail());
         user.setPassword(createUserRequest.getPassword());
-        user.setName(createUserRequest.getName());
+        user.setName(createUserRequest.getUsername());
         Users saved = userRepository.save(user);
 
         return new UserResponse(
                 saved.getEmail(),
-                saved.getPassword(),
-                saved.getName()
+                saved.getPassword()
         );
     }
-
-    public AddSalaryResponse addSalary(AddSalaryRequest addSalaryRequest) {
-        Users user = new Users();
-        user.setSalary(addSalaryRequest.getSalary());
-        Users saved = userRepository.save(user);
-        return new AddSalaryResponse(
-                saved.getSalary()
-        );
-    }
-
-    ;
 
     public List<Users> get() {
         return (List<Users>) userRepository.findAll();

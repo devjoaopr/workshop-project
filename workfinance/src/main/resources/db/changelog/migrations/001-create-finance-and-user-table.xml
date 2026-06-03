@@ -8,23 +8,37 @@
 
     <changeSet id="001-create-finance-and-user-table" author="devjoaopr">
 
-        <createTable tableName="finance">
-            <column name="id" type="uuid">
-                <constraints primaryKey="true" nullable="false"/>
+
+        <createTable tableName="users">
+
+            <column name="id" type="UUID">
+                <constraints primaryKey="true"
+                             primaryKeyName="pk_users"
+                             nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
+
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"
+                             unique="true"
+                             uniqueConstraintName="uk_users_username"/>
+            </column>
+
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"
+                             unique="true"
+                             uniqueConstraintName="uk_users_email"/>
+            </column>
+
+            <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="value" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="description" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_at" type="timestamp">
-                <constraints nullable="false" unique="true"/>
-            </column>
+
         </createTable>
+
 
         <createTable tableName="user">
             <column name="id" type="uuid">
@@ -36,11 +50,11 @@
             <column name="email" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="varchar(18)">
+            <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_at" type="timestamp">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
 
