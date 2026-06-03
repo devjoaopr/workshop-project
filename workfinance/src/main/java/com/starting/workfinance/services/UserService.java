@@ -1,5 +1,7 @@
 package com.starting.workfinance.services;
 
+import com.starting.workfinance.dto.AddSalaryRequest;
+import com.starting.workfinance.dto.AddSalaryResponse;
 import com.starting.workfinance.dto.CreateUserRequest;
 import com.starting.workfinance.dto.UserResponse;
 import com.starting.workfinance.entity.Users;
