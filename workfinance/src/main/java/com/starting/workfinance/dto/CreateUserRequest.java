@@ -10,7 +10,6 @@ import java.time.Instant;
 @Setter
 public class CreateUserRequest {
     private String password;
-    private String name;
+    private String username;
     private String email;
-    private Instant CreatedAt;
 }
