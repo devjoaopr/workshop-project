@@ -9,5 +9,5 @@ import java.time.Instant;
 @AllArgsConstructor
 public class UserResponse {
     private String email;
-    private String name;
+    private String password;
 }
