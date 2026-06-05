@@ -13,21 +13,26 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private JwtTokenProvider  jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
     private AuthenticationManager authenticationManager;
 
     @Override
     public String login(LoginDto loginDto) {
+        try {
+            Authentication authentication =
+                    authenticationManager.authenticate(
+                            new UsernamePasswordAuthenticationToken(
+                                    loginDto.getUsernameOrEmail(),
+                                    loginDto.getPassword()
+                            ));
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                loginDto.getUsernameOrEmail(),
-                loginDto.getPassword()
-        ));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+            return jwtTokenProvider.generateToken(authentication);
 
-        String token = jwtTokenProvider.generateToken(authentication);
-
-        return token;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 }
