@@ -30,20 +30,18 @@ public class SpringSecurityConfig {
     private JwtAuthenticationFilter authenticationFilter;
 
     @Bean
-    public static PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((authorize) -> {
-                    authorize.anyRequest().permitAll();
-                }).httpBasic(Customizer.withDefaults());
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((authorize) -> {
+            authorize.anyRequest().permitAll();
+        }).httpBasic(Customizer.withDefaults());
 
-        http.exceptionHandling(exception -> exception
-                .authenticationEntryPoint(authenticationEntryPoint));
+        http.exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint));
 
         http.addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
