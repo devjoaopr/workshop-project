@@ -1,6 +1,7 @@
 package com.starting.workfinance.services;
 
 
+import com.starting.workfinance.Security.CustomUserDetails;
 import com.starting.workfinance.dto.AddSalaryUserRequest;
 import com.starting.workfinance.dto.AddSalaryUserResponse;
 import com.starting.workfinance.dto.CreateUserRequest;
@@ -9,11 +10,14 @@ import com.starting.workfinance.entity.Role;
 import com.starting.workfinance.entity.Users;
 import com.starting.workfinance.repository.RoleRepository;
 import com.starting.workfinance.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -52,11 +56,16 @@ public class UserService {
     }
 
     public AddSalaryUserResponse addSalary(AddSalaryUserRequest addSalaryUserRequest) throws Exception {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 
-        Users user = new Users();
-        user.setSalary(addSalaryUserRequest.getSalary());
+        UUID userId = userDetails.getId();
 
-        Users saved = userRepository.save(user);
+        Users current_user = (Users) userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        current_user.setSalary(addSalaryUserRequest.getSalary());
+
+        Users saved = userRepository.save(current_user);
 
         return new AddSalaryUserResponse(
                 saved.getSalary()
