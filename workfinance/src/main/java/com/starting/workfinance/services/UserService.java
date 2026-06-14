@@ -1,6 +1,8 @@
 package com.starting.workfinance.services;
 
 
+import com.starting.workfinance.dto.AddSalaryUserRequest;
+import com.starting.workfinance.dto.AddSalaryUserResponse;
 import com.starting.workfinance.dto.CreateUserRequest;
 import com.starting.workfinance.dto.UserResponse;
 import com.starting.workfinance.entity.Role;
@@ -47,6 +49,18 @@ public class UserService {
 
     public List<Users> get() {
         return (List<Users>) userRepository.findAll();
+    }
+
+    public AddSalaryUserResponse addSalary(AddSalaryUserRequest addSalaryUserRequest) throws Exception {
+
+        Users user = new Users();
+        user.setSalary(addSalaryUserRequest.getSalary());
+
+        Users saved = userRepository.save(user);
+
+        return new AddSalaryUserResponse(
+                saved.getSalary()
+        );
     }
 
 }

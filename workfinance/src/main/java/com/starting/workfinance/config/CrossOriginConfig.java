@@ -13,6 +13,6 @@ public class CrossOriginConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:4200")
                 .allowedMethods("*")
                 .allowedHeaders("*");
-        ;
+
     }
 }

@@ -8,4 +8,5 @@
 
     <include file="db/changelog/migrations/001-create-finance-and-user-table.xml"/>
     <include file="/db/changelog/migrations/002-create-users-roles-table.xml"/>
+    <include file="/db/changelog/migrations/003-add-salary-to-user-table.xml"/>
 </databaseChangeLog>
