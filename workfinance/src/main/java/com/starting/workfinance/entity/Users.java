@@ -37,4 +37,6 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private Set<Role> roles;
+    @Column(name = "salary", length = Integer.MAX_VALUE)
+    private String salary;
 }
