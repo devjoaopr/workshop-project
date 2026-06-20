@@ -37,9 +37,14 @@ public class SpringSecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((authorize) -> {
-            authorize.anyRequest().permitAll();
-        }).httpBasic(Customizer.withDefaults());
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/users/new").permitAll()
+                .requestMatchers("/api/users/get").authenticated()
+                .requestMatchers("/api/users/add_salary").authenticated()
+                .requestMatchers("/api/finance/create_finance").authenticated()
+                .requestMatchers("/api/finance/get").authenticated()
+                .anyRequest().authenticated());
 
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(authenticationEntryPoint));
 
